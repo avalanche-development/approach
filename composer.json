@@ -1,0 +1,11 @@
+{
+    "name": "avalanche-development/approach",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jacobemerick",
+            "email": "jpemeric@gmail.com"
+        }
+    ],
+    "require": {}
+}
