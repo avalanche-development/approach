@@ -165,4 +165,20 @@ class Swagger
     {
         $this->produces = $produces;
     }
+
+    /**
+     * @return Paths
+     */
+    public function getPaths()
+    {
+        return $this->paths;
+    }
+
+    /**
+     * @param Paths $paths
+     */
+    public function setPaths(Paths $paths)
+    {
+        $this->paths = $paths;
+    }
 }
