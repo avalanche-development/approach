@@ -2,7 +2,7 @@
 
 namespace AvalancheDevelopment\Approach\Schema;
 
-use AvalancheDevelopment\Approach\Schema\Part;
+use AvalancheDevelopment\Approach\Schema\Part\Extensions;
 
 class License
 {
