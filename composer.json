@@ -16,5 +16,10 @@
         "psr-4": {
             "AvalancheDevelopment\\Approach\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AvalancheDevelopment\\Approach\\TestHelper\\": "tests/unit/helpers/"
+        }
     }
 }
