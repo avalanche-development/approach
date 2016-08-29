@@ -181,4 +181,20 @@ class Swagger
     {
         $this->paths = $paths;
     }
+
+    /**
+     * @return ExternalDocs
+     */
+    public function getExternalDocs()
+    {
+        return $this->externalDocs;
+    }
+
+    /**
+     * @param ExternalDocs $externalDocs
+     */
+    public function setExternalDocs(ExternalDocs $externalDocs)
+    {
+        $this->externalDocs = $externalDocs;
+    }
 }
