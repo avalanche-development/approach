@@ -36,10 +36,10 @@ class Swagger
     /** @var Definitions */
     protected $definitions;
 
-    /** @var Parameters */
-    protected $parameters;
+    /** @var ParameterDefinitions */
+    protected $parameterDefinitions;
 
-    /** @var Responses */
+    /** @var ResponseDefinitions */
     protected $responses;
 
     /** @var SecurityDefinitions */
