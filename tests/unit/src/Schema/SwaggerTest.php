@@ -156,4 +156,46 @@ class SwaggerTest extends PHPUnit_Framework_TestCase
 
         $this->assertAttributeEquals($produces, 'produces', $swagger);
     }
+
+    public function testGetPathsReturnsPaths()
+    {
+        $paths = new Paths;
+
+        $swagger = new Swagger;
+        $this->setProperty($swagger, 'paths', $paths);
+        $result = $swagger->getPaths();
+
+        $this->assertEquals($paths, $result);
+    }
+
+    public function testSetPathsSetsPaths()
+    {
+        $paths = new Paths;
+
+        $swagger = new Swagger;
+        $swagger->setPaths($paths);
+
+        $this->assertAttributeEquals($paths, 'paths', $swagger);
+    }
+
+    public function testGetExternalDocsReturnsExternalDocs()
+    {
+        $externalDocs = new ExternalDocs;
+
+        $swagger = new Swagger;
+        $this->setProperty($swagger, 'externalDocs', $externalDocs);
+        $result = $swagger->getExternalDocs();
+
+        $this->assertEquals($externalDocs, $result);
+    }
+
+    public function testSetExternalDocsSetsExternalDocs()
+    {
+        $externalDocs = new ExternalDocs;
+
+        $swagger = new Swagger;
+        $swagger->setExternalDocs($externalDocs);
+
+        $this->assertAttributeEquals($externalDocs, 'externalDocs', $swagger);
+    }
 }

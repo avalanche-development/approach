@@ -5,7 +5,7 @@ namespace AvalancheDevelopment\Approach\Schema;
 use AvalancheDevelopment\Approach\TestHelper\SetPropertyTrait;
 use PHPUnit_Framework_TestCase;
 
-class ExternalDocsContactTest extends PHPUnit_Framework_TestCase
+class ExternalDocsTest extends PHPUnit_Framework_TestCase
 {
 
     use SetPropertyTrait;

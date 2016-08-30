@@ -168,7 +168,7 @@ class Operation
     /**
      * @param array $parameters
      */
-    public function setParamters(array $parameters)
+    public function setParameters(array $parameters)
     {
         $this->parameters = $parameters;
     }
