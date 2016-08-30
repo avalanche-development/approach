@@ -39,7 +39,7 @@ class SwaggerTest extends PHPUnit_Framework_TestCase
         $this->setProperty($swagger, 'info', $info);
         $result = $swagger->getInfo();
 
-        $this->assertEquals($info, $result);
+        $this->assertSame($info, $result);
     }
 
     public function testSetInfoSetsInfo()
@@ -49,7 +49,7 @@ class SwaggerTest extends PHPUnit_Framework_TestCase
         $swagger = new Swagger;
         $swagger->setInfo($info);
 
-        $this->assertAttributeEquals($info, 'info', $swagger);
+        $this->assertAttributeSame($info, 'info', $swagger);
     }
 
     public function testGetHostReturnsHost()
@@ -165,7 +165,7 @@ class SwaggerTest extends PHPUnit_Framework_TestCase
         $this->setProperty($swagger, 'paths', $paths);
         $result = $swagger->getPaths();
 
-        $this->assertEquals($paths, $result);
+        $this->assertSame($paths, $result);
     }
 
     public function testSetPathsSetsPaths()
@@ -175,7 +175,7 @@ class SwaggerTest extends PHPUnit_Framework_TestCase
         $swagger = new Swagger;
         $swagger->setPaths($paths);
 
-        $this->assertAttributeEquals($paths, 'paths', $swagger);
+        $this->assertAttributeSame($paths, 'paths', $swagger);
     }
 
     public function testGetExternalDocsReturnsExternalDocs()
@@ -186,7 +186,7 @@ class SwaggerTest extends PHPUnit_Framework_TestCase
         $this->setProperty($swagger, 'externalDocs', $externalDocs);
         $result = $swagger->getExternalDocs();
 
-        $this->assertEquals($externalDocs, $result);
+        $this->assertSame($externalDocs, $result);
     }
 
     public function testSetExternalDocsSetsExternalDocs()
@@ -196,6 +196,6 @@ class SwaggerTest extends PHPUnit_Framework_TestCase
         $swagger = new Swagger;
         $swagger->setExternalDocs($externalDocs);
 
-        $this->assertAttributeEquals($externalDocs, 'externalDocs', $swagger);
+        $this->assertAttributeSame($externalDocs, 'externalDocs', $swagger);
     }
 }

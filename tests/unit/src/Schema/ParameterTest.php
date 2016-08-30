@@ -102,7 +102,7 @@ class ParameterTest extends PHPUnit_Framework_TestCase
         $this->setProperty($parameter, 'schema', $schema);
         $result = $parameter->getSchema();
 
-        $this->assertEquals($schema, $result);
+        $this->assertSame($schema, $result);
     }
 
     public function testSetSchemaSetsSchema()
@@ -112,7 +112,7 @@ class ParameterTest extends PHPUnit_Framework_TestCase
         $parameter = new Parameter;
         $parameter->setSchema($schema);
 
-        $this->assertAttributeEquals($schema, 'schema', $parameter);
+        $this->assertAttributeSame($schema, 'schema', $parameter);
     }
 
     public function testGetTypeReturnsType()
@@ -186,7 +186,7 @@ class ParameterTest extends PHPUnit_Framework_TestCase
         $this->setProperty($parameter, 'items', $items);
         $result = $parameter->getItems();
 
-        $this->assertEquals($items, $result);
+        $this->assertSame($items, $result);
     }
 
     public function testSetItemsSetsItems()
@@ -196,7 +196,7 @@ class ParameterTest extends PHPUnit_Framework_TestCase
         $parameter = new Parameter;
         $parameter->setItems($items);
 
-        $this->assertAttributeEquals($items, 'items', $parameter);
+        $this->assertAttributeSame($items, 'items', $parameter);
     }
 
     public function testGetCollectionFormatReturnsCollectionFormat()

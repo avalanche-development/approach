@@ -60,7 +60,7 @@ class ItemsTest extends PHPUnit_Framework_TestCase
         $this->setProperty($items, 'items', $arrayItems);
         $result = $items->getItems();
 
-        $this->assertEquals($arrayItems, $result);
+        $this->assertSame($arrayItems, $result);
     }
 
     public function testSetItemsSetsItems()
@@ -70,7 +70,7 @@ class ItemsTest extends PHPUnit_Framework_TestCase
         $items = new Items;
         $items->setItems($arrayItems);
 
-        $this->assertAttributeEquals($arrayItems, 'items', $items);
+        $this->assertAttributeSame($arrayItems, 'items', $items);
     }
 
     public function testGetCollectionFormatReturnsCollectionFormat()

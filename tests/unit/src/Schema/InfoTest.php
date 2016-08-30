@@ -81,7 +81,7 @@ class InfoTest extends PHPUnit_Framework_TestCase
         $this->setProperty($info, 'contact', $contact);
         $result = $info->getContact();
 
-        $this->assertEquals($contact, $result);
+        $this->assertSame($contact, $result);
     }
 
     public function testSetContactSetsContact()
@@ -91,7 +91,7 @@ class InfoTest extends PHPUnit_Framework_TestCase
         $info = new Info;
         $info->setContact($contact);
 
-        $this->assertAttributeEquals($contact, 'contact', $info);
+        $this->assertAttributeSame($contact, 'contact', $info);
     }
 
     public function testGetLicenseReturnsLicense()
@@ -102,7 +102,7 @@ class InfoTest extends PHPUnit_Framework_TestCase
         $this->setProperty($info, 'license', $license);
         $result = $info->getLicense();
 
-        $this->assertEquals($license, $result);
+        $this->assertSame($license, $result);
     }
 
     public function testSetLicenseSetsLicense()
@@ -112,7 +112,7 @@ class InfoTest extends PHPUnit_Framework_TestCase
         $info = new Info;
         $info->setLicense($license);
 
-        $this->assertAttributeEquals($license, 'license', $info);
+        $this->assertAttributeSame($license, 'license', $info);
     }
 
     public function testGetVersionReturnsVersion()

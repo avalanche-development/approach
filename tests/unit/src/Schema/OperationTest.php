@@ -87,7 +87,7 @@ class OperationTest extends PHPUnit_Framework_TestCase
         $this->setProperty($operation, 'externalDocs', $externalDocs);
         $result = $operation->getExternalDocs();
 
-        $this->assertEquals($externalDocs, $result);
+        $this->assertSame($externalDocs, $result);
     }
 
     public function testSetExternalDocsSetsExternalDocs()
@@ -97,7 +97,7 @@ class OperationTest extends PHPUnit_Framework_TestCase
         $operation = new Operation;
         $operation->setExternalDocs($externalDocs);
 
-        $this->assertAttributeEquals($externalDocs, 'externalDocs', $operation);
+        $this->assertAttributeSame($externalDocs, 'externalDocs', $operation);
     }
 
     public function testGetOperationIdReturnsOperationId()
@@ -187,26 +187,11 @@ class OperationTest extends PHPUnit_Framework_TestCase
     public function testGetResponsesReturnsResponses()
     {
         $this->markTestIncomplete('Responses not done yet');
-
-        $responses = [ new Responses ];
-
-        $operation = new Operation;
-        $this->setProperty($operation, 'responses', $responses);
-        $result = $operation->getResponses();
-
-        $this->assertEquals($responses, $result);
     }
 
     public function testSetResponsesSetsResponses()
     {
         $this->markTestIncomplete('Responses not done yet');
-
-        $responses = [ new Responses ];
-
-        $operation = new Operation;
-        $operation->setResponses($responses);
-
-        $this->assertAttributeEquals($responses, 'responses', $operation);
     }
 
     public function testGetSchemesReturnsSchemes()
