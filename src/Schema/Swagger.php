@@ -183,6 +183,38 @@ class Swagger
     }
 
     /**
+     * @return SecurityDefinitions
+     */
+    public function getSecurityDefinitions()
+    {
+        return $this->securityDefinitions;
+    }
+
+    /**
+     * @param SecurityDefinitions $securityDefinitions
+     */
+    public function setSecurityDefinitions(SecurityDefinitions $securityDefinitions)
+    {
+        $this->securityDefinitions = $securityDefinitions;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSecurity()
+    {
+        return $this->security;
+    }
+
+    /**
+     * @param array $security
+     */
+    public function setSecurity(array $security)
+    {
+        $this->security = $security;
+    }
+
+    /**
      * @return ExternalDocs
      */
     public function getExternalDocs()

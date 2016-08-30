@@ -178,6 +178,48 @@ class SwaggerTest extends PHPUnit_Framework_TestCase
         $this->assertAttributeSame($paths, 'paths', $swagger);
     }
 
+    public function testGetSecurityDefinitionsReturnsSecurityDefinitions()
+    {
+        $securityDefinitions = new SecurityDefinitions;
+
+        $swagger = new Swagger;
+        $this->setProperty($swagger, 'securityDefinitions', $securityDefinitions);
+        $result = $swagger->getSecurityDefinitions();
+
+        $this->assertSame($securityDefinitions, $result);
+    }
+
+    public function testSetSecurityDefinitionsSetsSecurityDefinitions()
+    {
+        $securityDefinitions = new SecurityDefinitions;
+
+        $swagger = new Swagger;
+        $swagger->setSecurityDefinitions($securityDefinitions);
+
+        $this->assertAttributeSame($securityDefinitions, 'securityDefinitions', $swagger);
+    }
+
+    public function testGetSecurityReturnsSecurity()
+    {
+        $security = [ new SecurityRequirement ];
+
+        $swagger = new Swagger;
+        $this->setProperty($swagger, 'security', $security);
+        $result = $swagger->getSecurity();
+
+        $this->assertEquals($security, $result);
+    }
+
+    public function testSetSecuritySetsSecurity()
+    {
+        $security = [ new SecurityRequirement ];
+
+        $swagger = new Swagger;
+        $swagger->setSecurity($security);
+
+        $this->assertAttributeEquals($security, 'security', $swagger);
+    }
+
     public function testGetExternalDocsReturnsExternalDocs()
     {
         $externalDocs = new ExternalDocs;

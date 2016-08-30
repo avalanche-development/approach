@@ -238,11 +238,22 @@ class OperationTest extends PHPUnit_Framework_TestCase
 
     public function testGetSecurityReturnsSecurity()
     {
-        $this->markTestIncomplete('Security not implemented yet');
+        $security = [ new SecurityRequirement ];
+
+        $operation = new Operation;
+        $this->setProperty($operation, 'security', $security);
+        $result = $operation->getSecurity();
+
+        $this->assertEquals($security, $result);
     }
 
     public function testSetSecuritySetsSecurity()
     {
-        $this->markTestIncomplete('Security not implemented yet');
+        $security = [ new SecurityRequirement ];
+
+        $operation = new Operation;
+        $operation->setSecurity($security);
+
+        $this->assertAttributeEquals($security, 'security', $operation);
     }
 }
