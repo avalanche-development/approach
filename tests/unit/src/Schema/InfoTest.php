@@ -4,7 +4,6 @@ namespace AvalancheDevelopment\Approach\Schema;
 
 use AvalancheDevelopment\Approach\TestHelper\SetPropertyTrait;
 use PHPUnit_Framework_TestCase;
-use ReflectionClass;
 
 class InfoTest extends PHPUnit_Framework_TestCase
 {
