@@ -34,8 +34,8 @@ class Swagger
     /** @var Definitions */
     protected $definitions;
 
-    /** @var ParameterDefinitions */
-    protected $parameterDefinitions;
+    /** @var ParametersDefinitions */
+    protected $parameters;
 
     /** @var ResponseDefinitions */
     protected $responses;
@@ -178,6 +178,38 @@ class Swagger
     public function setPaths(Paths $paths)
     {
         $this->paths = $paths;
+    }
+
+    /**
+     * @return Definitions
+     */
+    public function getDefinitions()
+    {
+        return $this->definitions;
+    }
+
+    /**
+     * @param Definitions $definitions
+     */
+    public function setDefinitions(Definitions $definitions)
+    {
+        $this->definitions = $definitions;
+    }
+
+    /**
+     * @return ParametersDefinitions
+     */
+    public function getParametersDefinitions()
+    {
+        return $this->parameters;
+    }
+
+    /**
+     * @param ParametersDefinitions $parameters
+     */
+    public function setParametersDefinitions(ParametersDefinitions $parameters)
+    {
+        $this->parameters = $parameters;
     }
 
     /**
