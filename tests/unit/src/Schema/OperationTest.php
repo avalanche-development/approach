@@ -186,12 +186,23 @@ class OperationTest extends PHPUnit_Framework_TestCase
 
     public function testGetResponsesReturnsResponses()
     {
-        $this->markTestIncomplete('Responses not done yet');
+        $responses = new Responses;
+
+        $operation = new Operation;
+        $this->setProperty($operation, 'responses', $responses);
+        $result = $operation->getResponses();
+
+        $this->assertSame($responses, $result);
     }
 
     public function testSetResponsesSetsResponses()
     {
-        $this->markTestIncomplete('Responses not done yet');
+        $responses = new Responses;
+
+        $operation = new Operation;
+        $operation->setResponses($responses);
+
+        $this->assertAttributeSame($responses, 'responses', $operation);
     }
 
     public function testGetSchemesReturnsSchemes()
