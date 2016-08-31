@@ -12,11 +12,22 @@ class PathsTest extends PHPUnit_Framework_TestCase
 
     public function testGetPathItemListReturnsPathItemList()
     {
-        $this->markTestIncomplete('This is probably not implemented correctly');
+        $pathList = [ '/resource' => new PathItem ];
+
+        $paths = new Paths;
+        $this->setProperty($paths, 'paths', $pathList);
+        $result = $paths->getPaths();
+
+        $this->assertEquals($pathList, $result);
     }
 
     public function testSetPathItemListSetsPathItemList()
     {
-        $this->markTestIncomplete('This is probably not implemented correctly');
+        $pathList = [ '/resource' => new PathItem ];
+
+        $paths = new Paths;
+        $paths->setPaths($pathList);
+
+        $this->assertAttributeEquals($pathList, 'paths', $paths);
     }
 }

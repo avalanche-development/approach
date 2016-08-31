@@ -2,31 +2,27 @@
 
 namespace AvalancheDevelopment\Approach\Schema;
 
-use AvalancheDevelopment\Approach\Schema\Part\Extensions;
-
 class Paths
 {
 
-    use Extensions;
+    use Part\Extensions;
 
     /** @var array */
-    protected $pathItemList;
+    protected $paths;
 
     /**
-     * @param string $path
-     * @return PathItem
+     * @return array
      */
-    public function getPathItem($path)
+    public function getPaths()
     {
-        return $this->pathItemList[$path];
+        return $this->paths;
     }
 
     /**
-     * @param string $path
-     * @param PathItem $pathItem
+     * @param array $paths
      */
-    public function setPath($path, Path $pathItem)
+    public function setPaths($paths)
     {
-        $this->pathItemList[$path] = $pathItem;
+        $this->paths = $paths;
     }
 }
