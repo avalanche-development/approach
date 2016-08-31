@@ -2,12 +2,10 @@
 
 namespace AvalancheDevelopment\Approach\Schema;
 
-use AvalancheDevelopment\Approach\Schema\Part\Extensions;
-
 class Swagger
 {
 
-    use Extensions;
+    use Part\Extensions;
 
     /** @var string */
     protected $swagger;
