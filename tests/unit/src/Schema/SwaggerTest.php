@@ -220,6 +220,27 @@ class SwaggerTest extends PHPUnit_Framework_TestCase
         $this->assertAttributeSame($parametersDefinitions, 'parameters', $swagger);
     }
 
+    public function testGetResponsesDefinitionsReturnsResponsesDefinitions()
+    {
+        $responsesDefinitions = new ResponsesDefinitions;
+
+        $swagger = new Swagger;
+        $this->setProperty($swagger, 'responses', $responsesDefinitions);
+        $result = $swagger->getResponsesDefinitions();
+
+        $this->assertSame($responsesDefinitions, $result);
+    }
+
+    public function testSetResponsesDefinitionsSetsResponsesDefinitions()
+    {
+        $responsesDefinitions = new ResponsesDefinitions;
+
+        $swagger = new Swagger;
+        $swagger->setResponsesDefinitions($responsesDefinitions);
+
+        $this->assertAttributeSame($responsesDefinitions, 'responses', $swagger);
+    }
+
     public function testGetSecurityDefinitionsReturnsSecurityDefinitions()
     {
         $securityDefinitions = new SecurityDefinitions;

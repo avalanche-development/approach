@@ -213,6 +213,22 @@ class Swagger
     }
 
     /**
+     * @return ResponsesDefinitions
+     */
+    public function getResponsesDefinitions()
+    {
+        return $this->responses;
+    }
+
+    /**
+     * @param ResponsesDefinitions $responses
+     */
+    public function setResponsesDefinitions(ResponsesDefinitions $responses)
+    {
+        $this->responses = $responses;
+    }
+
+    /**
      * @return SecurityDefinitions
      */
     public function getSecurityDefinitions()
