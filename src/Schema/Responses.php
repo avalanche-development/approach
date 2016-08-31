@@ -26,7 +26,7 @@ class Responses
      */
     public function setDefault(Response $default)
     {
-        $this->default = $response;
+        $this->default = $default;
     }
 
     /**

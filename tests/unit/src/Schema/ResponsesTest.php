@@ -23,12 +23,12 @@ class ResponsesTest extends PHPUnit_Framework_TestCase
 
     public function testSetDefaultSetsDefault()
     {
-        $default = => new Response;
+        $default = new Response;
 
         $responses = new Responses;
         $responses->setDefault($default);
 
-        $this->assertAttributeEquals($responses, 'responses', $default);
+        $this->assertAttributeEquals($default, 'default', $responses);
     }
 
     public function testGetResponsesReturnsResponses()
@@ -49,6 +49,6 @@ class ResponsesTest extends PHPUnit_Framework_TestCase
         $responses = new Responses;
         $responses->setResponses($responseList);
 
-        $this->assertAttributeEquals($responses, 'responses', $responseList);
+        $this->assertAttributeEquals($responseList, 'responses', $responses);
     }
 }
