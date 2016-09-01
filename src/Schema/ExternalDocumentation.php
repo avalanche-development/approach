@@ -2,7 +2,7 @@
 
 namespace AvalancheDevelopment\Approach\Schema;
 
-class ExternalDocs
+class ExternalDocumentation
 {
 
     use Part\Extensions;

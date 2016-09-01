@@ -5,7 +5,7 @@ namespace AvalancheDevelopment\Approach\Schema;
 use AvalancheDevelopment\Approach\TestHelper\SetPropertyTrait;
 use PHPUnit_Framework_TestCase;
 
-class ExternalDocsTest extends PHPUnit_Framework_TestCase
+class ExternalDocumentationTest extends PHPUnit_Framework_TestCase
 {
 
     use SetPropertyTrait;
@@ -14,7 +14,7 @@ class ExternalDocsTest extends PHPUnit_Framework_TestCase
     {
         $description = 'More info here';
 
-        $externalDocs = new ExternalDocs;
+        $externalDocs = new ExternalDocumentation;
         $this->setProperty($externalDocs, 'description', $description);
         $result = $externalDocs->getDescription();
 
@@ -25,7 +25,7 @@ class ExternalDocsTest extends PHPUnit_Framework_TestCase
     {
         $description = 'More info here';
 
-        $externalDocs = new ExternalDocs;
+        $externalDocs = new ExternalDocumentation;
         $externalDocs->setDescription($description);
 
         $this->assertAttributeEquals($description, 'description', $externalDocs);
@@ -35,7 +35,7 @@ class ExternalDocsTest extends PHPUnit_Framework_TestCase
     {
         $url = 'http://domain.tld/info';
 
-        $externalDocs = new ExternalDocs;
+        $externalDocs = new ExternalDocumentation;
         $this->setProperty($externalDocs, 'url', $url);
         $result = $externalDocs->getUrl();
 
@@ -46,7 +46,7 @@ class ExternalDocsTest extends PHPUnit_Framework_TestCase
     {
         $url = 'http://domain.tld/info';
 
-        $externalDocs = new ExternalDocs;
+        $externalDocs = new ExternalDocumentation;
         $externalDocs->setUrl($url);
 
         $this->assertAttributeEquals($url, 'url', $externalDocs);

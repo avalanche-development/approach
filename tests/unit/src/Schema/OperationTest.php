@@ -79,23 +79,23 @@ class OperationTest extends PHPUnit_Framework_TestCase
         $this->assertAttributeEquals($description, 'description', $operation);
     }
 
-    public function testGetExternalDocsReturnsExternalDocs()
+    public function testGetExternalDocumentationReturnsExternalDocumentation()
     {
-        $externalDocs = new ExternalDocs;
+        $externalDocs = new ExternalDocumentation;
 
         $operation = new Operation;
         $this->setProperty($operation, 'externalDocs', $externalDocs);
-        $result = $operation->getExternalDocs();
+        $result = $operation->getExternalDocumentation();
 
         $this->assertSame($externalDocs, $result);
     }
 
-    public function testSetExternalDocsSetsExternalDocs()
+    public function testSetExternalDocumentationSetsExternalDocumentation()
     {
-        $externalDocs = new ExternalDocs;
+        $externalDocs = new ExternalDocumentation;
 
         $operation = new Operation;
-        $operation->setExternalDocs($externalDocs);
+        $operation->setExternalDocumentation($externalDocs);
 
         $this->assertAttributeSame($externalDocs, 'externalDocs', $operation);
     }

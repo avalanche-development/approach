@@ -49,7 +49,7 @@ class Swagger
     /** @var array */
     protected $tags;
 
-    /** @var ExternalDocs */
+    /** @var ExternalDocumentation */
     protected $externalDocs;
 
     /**
@@ -261,17 +261,33 @@ class Swagger
     }
 
     /**
-     * @return ExternalDocs
+     * @return array
      */
-    public function getExternalDocs()
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param array $tags
+     */
+    public function setTags(array $tags)
+    {
+        $this->tags = $tags;
+    }
+
+    /**
+     * @return ExternalDocumentation
+     */
+    public function getExternalDocumentation()
     {
         return $this->externalDocs;
     }
 
     /**
-     * @param ExternalDocs $externalDocs
+     * @param ExternalDocumentation $externalDocs
      */
-    public function setExternalDocs(ExternalDocs $externalDocs)
+    public function setExternalDocumentation(ExternalDocumentation $externalDocs)
     {
         $this->externalDocs = $externalDocs;
     }

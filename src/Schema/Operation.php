@@ -16,7 +16,7 @@ class Operation
     /** @var string */
     protected $description;
 
-    /** @var ExternalDocs */
+    /** @var ExternalDocumentation */
     protected $externalDocs;
 
     /** @var string */
@@ -92,17 +92,17 @@ class Operation
     }
 
     /**
-     * @return ExternalDocs
+     * @return ExternalDocumentation
      */
-    public function getExternalDocs()
+    public function getExternalDocumentation()
     {
         return $this->externalDocs;
     }
 
     /**
-     * @param ExternalDocs $externalDocs
+     * @param ExternalDocumentation $externalDocs
      */
-    public function setExternalDocs(ExternalDocs $externalDocs)
+    public function setExternalDocumentation(ExternalDocumentation $externalDocs)
     {
         $this->externalDocs = $externalDocs;
     }

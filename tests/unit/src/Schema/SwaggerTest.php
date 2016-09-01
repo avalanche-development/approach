@@ -283,23 +283,44 @@ class SwaggerTest extends PHPUnit_Framework_TestCase
         $this->assertAttributeEquals($security, 'security', $swagger);
     }
 
-    public function testGetExternalDocsReturnsExternalDocs()
+    public function testGetTagsReturnsTags()
     {
-        $externalDocs = new ExternalDocs;
+        $tags = [ new Tag ];
+
+        $swagger = new Swagger;
+        $this->setProperty($swagger, 'tags', $tags);
+        $result = $swagger->getTags();
+
+        $this->assertEquals($tags, $result);
+    }
+
+    public function testSetTagsSetsTags()
+    {
+        $tags = [ new Tag ];
+
+        $swagger = new Swagger;
+        $swagger->setTags($tags);
+
+        $this->assertAttributeEquals($tags, 'tags', $swagger);
+    }
+
+    public function testGetExternalDocumentationReturnsExternalDocumentation()
+    {
+        $externalDocs = new ExternalDocumentation;
 
         $swagger = new Swagger;
         $this->setProperty($swagger, 'externalDocs', $externalDocs);
-        $result = $swagger->getExternalDocs();
+        $result = $swagger->getExternalDocumentation();
 
         $this->assertSame($externalDocs, $result);
     }
 
-    public function testSetExternalDocsSetsExternalDocs()
+    public function testSetExternalDocumentationSetsExternalDocumentation()
     {
-        $externalDocs = new ExternalDocs;
+        $externalDocs = new ExternalDocumentation;
 
         $swagger = new Swagger;
-        $swagger->setExternalDocs($externalDocs);
+        $swagger->setExternalDocumentation($externalDocs);
 
         $this->assertAttributeSame($externalDocs, 'externalDocs', $swagger);
     }
