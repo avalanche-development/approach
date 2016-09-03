@@ -3,6 +3,7 @@
 namespace AvalancheDevelopment\Approach\Builder;
 
 use AvalancheDevelopment\Approach\Schema\Contact as ContactObject;
+use AvalancheDevelopment\Approach\SchemaObjectFactory;
 
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -11,11 +12,18 @@ use Psr\Log\NullLogger;
 class Contact implements LoggerAwareInterface
 {
 
+    /** @var SchemaObjectFactory */
+    protected $schemaObjectFactory;
+
     /** @var LoggerInterface */
     protected $logger;
-     
-    public function __construct()
+
+    /**
+     * @param SchemaObjectFactory $schemaObjectFactory
+     */
+    public function __construct(SchemaObjectFactory $schemaObjectFactory)
     {
+        $this->schemaObjectFactory = $schemaObjectFactory;
         $this->logger = new NullLogger;
     }
 
@@ -33,7 +41,7 @@ class Contact implements LoggerAwareInterface
      */
     public function __invoke(array $data)
     {
-        $contact = new ContactObject;
+        $contact = $this->schemaObjectFactory->newSchemaObject('Contact');
         if (!empty($data['name'])) {
             $contact->setName($data['name']);
         }
