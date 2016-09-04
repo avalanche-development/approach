@@ -5,27 +5,9 @@ namespace AvalancheDevelopment\Approach\Builder;
 use AvalancheDevelopment\Approach\Schema\License as LicenseObject;
 
 use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
 
-class License implements LoggerAwareInterface
+class License extends AbstractBuilder implements BuilderInterface, LoggerAwareInterface
 {
-
-    /** @var LoggerInterface */
-    protected $logger;
-     
-    public function __construct()
-    {
-        $this->logger = new NullLogger;
-    }
-
-    /**
-     * @param LoggerInterface $logger
-     */
-    public function setLogger(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
-    }
 
     /**
      * @param array $data
@@ -38,7 +20,7 @@ class License implements LoggerAwareInterface
             return;
         }
 
-        $license = new LicenseObject;
+        $license = $this->schemaObjectFactory->newSchemaObject('License');
         $license->setName($data['name']);
         if (!empty($data['url'])) {
             $license->setUrl($data['url']);

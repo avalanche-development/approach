@@ -10,24 +10,8 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
-class Info implements LoggerAwareInterface
+class Info extends AbstractBuilder implements BuilderInterface, LoggerAwareInterface
 {
-
-    /** @var LoggerInterface */
-    protected $logger;
-     
-    public function __construct()
-    {
-        $this->logger = new NullLogger;
-    }
-
-    /**
-     * @param LoggerInterface $logger
-     */
-    public function setLogger(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
-    }
 
     /**
      * @param array $data
@@ -40,7 +24,7 @@ class Info implements LoggerAwareInterface
             return;
         }
 
-        $info = new InfoObject;
+        $info = $this->schemaObjectFactory->newSchemaObject('Info');
         $info->setTitle($data['title']);
         if (!empty($data['description'])) {
             $info->setDescription($data['description']);
