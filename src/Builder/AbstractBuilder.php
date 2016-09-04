@@ -7,7 +7,7 @@ use AvalancheDevelopment\Approach\SchemaObjectFactory;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 
-abstract AbstractBuilder
+abstract class AbstractBuilder
 {
 
     use LoggerAwareTrait;

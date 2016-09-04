@@ -14,7 +14,7 @@ class ExtensionsTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->extensions = $this->getObjectForTrait(__NAMESPACE__ . '\Extensions');
+        $this->extensions = $this->getObjectForTrait(Extensions::class);
     }
 
     public function testGetExtensionGetsExtension()
