@@ -3,14 +3,13 @@
 namespace AvalancheDevelopment\Approach;
 
 use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerInterface;
+use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 
 class SchemaObjectFactory implements LoggerAwareInterface
 {
 
-    /** @var LoggerInterface */
-    protected $logger;
+    use LoggerAwareTrait;
 
     public function __construct()
     {
@@ -36,13 +35,5 @@ class SchemaObjectFactory implements LoggerAwareInterface
         $path = __NAMESPACE__ . "\Schema\{$className}";
         $this->logger->debug("SchemaObjectFactory resolved {$className} -> {$path}");
         return $path;
-    }
-
-    /**
-     * @param LoggerInterface $logger
-     */
-    public function setLogger(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
     }
 }
