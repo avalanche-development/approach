@@ -16,7 +16,7 @@ class License extends AbstractBuilder implements BuilderInterface, LoggerAwareIn
     public function __invoke(array $data)
     {
         if (empty($data['name'])) {
-            $this->logger('Could not build License object - missing name');
+            $this->logger->warning('Could not build License object - missing name');
             return;
         }
 
