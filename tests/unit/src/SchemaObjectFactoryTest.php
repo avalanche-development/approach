@@ -30,24 +30,43 @@ class SchemaObjectFactoryTest extends PHPUnit_Framework_TestCase
         $this->markTestIncomplete('Need to find a way to mock autoloader');
     }
 
-    public function testResolvePathReturnsPath()
+    public function testResolveSchemaObjectPathReturnsPath()
     {
-        $this->markTestIncomplete('Refactored out');
-        return;
-
         $className = 'TestClass';
         $path = __NAMESPACE__ . "\Schema\{$className}";
 
         $mockLogger = $this->createMock(LoggerInterface::class);
         $mockLogger->expects($this->once())
             ->method('debug')
-            ->with("SchemaObjectFactory resolved {$className} -> {$path}");
+            ->with("SchemaObjectFactory resolved schema object {$className} -> {$path}");
 
         $schemaObjectFactory = new SchemaObjectFactory;
         $schemaObjectFactory->setLogger($mockLogger);
 
         $reflectedFactory = new ReflectionClass($schemaObjectFactory);
-        $reflectedResolvePath = $reflectedFactory->getMethod('resolvePath');
+        $reflectedResolvePath = $reflectedFactory->getMethod('resolveSchemaObjectPath');
+        $reflectedResolvePath->setAccessible(true);
+
+        $result = $reflectedResolvePath->invokeArgs($schemaObjectFactory, [ $className ]);
+
+        $this->assertEquals($path, $result);
+    }
+
+    public function testResolveBuilderPathReturnsPath()
+    {
+        $className = 'TestClass';
+        $path = __NAMESPACE__ . "\Builder\{$className}";
+
+        $mockLogger = $this->createMock(LoggerInterface::class);
+        $mockLogger->expects($this->once())
+            ->method('debug')
+            ->with("SchemaObjectFactory resolved builder {$className} -> {$path}");
+
+        $schemaObjectFactory = new SchemaObjectFactory;
+        $schemaObjectFactory->setLogger($mockLogger);
+
+        $reflectedFactory = new ReflectionClass($schemaObjectFactory);
+        $reflectedResolvePath = $reflectedFactory->getMethod('resolveBuilderPath');
         $reflectedResolvePath->setAccessible(true);
 
         $result = $reflectedResolvePath->invokeArgs($schemaObjectFactory, [ $className ]);
