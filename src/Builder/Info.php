@@ -58,7 +58,7 @@ class Info extends AbstractBuilder implements BuilderInterface, LoggerAwareInter
             return;
         }
 
-        return (new Contact)($data['contact']);
+        return $this->builderFactory->newBuilder('Contact')($data['contact']);
     }
 
     /**
@@ -71,6 +71,6 @@ class Info extends AbstractBuilder implements BuilderInterface, LoggerAwareInter
             return;
         }
 
-        return (new License)($data['license']);
+        return $this->builderFactory->newBuilder('License')($data['license']);
     }
 }

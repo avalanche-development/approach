@@ -30,7 +30,7 @@ class BuilderFactory implements LoggerAwareInterface
     public function newBuilder($className)
     {
         $fullPath = $this->resolvePath($className);
-        $builder = new $fullPath($schemaObjectFactory); // todo error handling
+        $builder = new $fullPath($this, $schemaObjectFactory); // todo error handling
         $builder->setLogger($this->logger);
         return $builder;
     }
