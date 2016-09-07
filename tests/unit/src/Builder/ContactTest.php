@@ -2,7 +2,6 @@
 
 namespace AvalancheDevelopment\Approach\Builder;
 
-use AvalancheDevelopment\Approach\BuilderFactory;
 use AvalancheDevelopment\Approach\Schema\Contact as ContactObject;
 use AvalancheDevelopment\Approach\SchemaObjectFactory;
 use PHPUnit_Framework_TestCase;
@@ -13,20 +12,18 @@ class ContactTest extends PHPUnit_Framework_TestCase
 
     public function testContactImplementsBuilderInterface()
     {
-        $builderFactory = $this->createMock(BuilderFactory::class);
         $schemaObjectFactory = $this->createMock(SchemaObjectFactory::class);
 
-        $contactBuilder = new Contact($builderFactory, $schemaObjectFactory);
+        $contactBuilder = new Contact($schemaObjectFactory);
 
         $this->assertInstanceOf(BuilderInterface::class, $contactBuilder);
     }
 
     public function testContactImplementsLoggerInterface()
     {
-        $builderFactory = $this->createMock(BuilderFactory::class);
         $schemaObjectFactory = $this->createMock(SchemaObjectFactory::class);
 
-        $contactBuilder = new Contact($builderFactory, $schemaObjectFactory);
+        $contactBuilder = new Contact($schemaObjectFactory);
 
         $this->assertInstanceOf(LoggerAwareInterface::class, $contactBuilder);
     }
@@ -37,14 +34,12 @@ class ContactTest extends PHPUnit_Framework_TestCase
         $contactObject->expects($this->never())
             ->method('setName');
 
-        $builderFactory = $this->createMock(BuilderFactory::class);
-
         $schemaObjectFactory = $this->createMock(SchemaObjectFactory::class);
         $schemaObjectFactory->method('newSchemaObject')
             ->with('Contact')
             ->willReturn($contactObject);
 
-        $contactBuilder = new Contact($builderFactory, $schemaObjectFactory);
+        $contactBuilder = new Contact($schemaObjectFactory);
         $contactBuilder([]);
     }
 
@@ -57,14 +52,12 @@ class ContactTest extends PHPUnit_Framework_TestCase
             ->method('setName')
             ->with($name);
 
-        $builderFactory = $this->createMock(BuilderFactory::class);
-
         $schemaObjectFactory = $this->createMock(SchemaObjectFactory::class);
         $schemaObjectFactory->method('newSchemaObject')
             ->with('Contact')
             ->willReturn($contactObject);
 
-        $contactBuilder = new Contact($builderFactory, $schemaObjectFactory);
+        $contactBuilder = new Contact($schemaObjectFactory);
         $contactBuilder([ 'name' => $name ]);
     }
 
@@ -74,14 +67,12 @@ class ContactTest extends PHPUnit_Framework_TestCase
         $contactObject->expects($this->never())
             ->method('setUrl');
 
-        $builderFactory = $this->createMock(BuilderFactory::class);
-
         $schemaObjectFactory = $this->createMock(SchemaObjectFactory::class);
         $schemaObjectFactory->method('newSchemaObject')
             ->with('Contact')
             ->willReturn($contactObject);
 
-        $contactBuilder = new Contact($builderFactory, $schemaObjectFactory);
+        $contactBuilder = new Contact($schemaObjectFactory);
         $contactBuilder([]);
     }
 
@@ -94,14 +85,12 @@ class ContactTest extends PHPUnit_Framework_TestCase
             ->method('setUrl')
             ->with($url);
 
-        $builderFactory = $this->createMock(BuilderFactory::class);
-
         $schemaObjectFactory = $this->createMock(SchemaObjectFactory::class);
         $schemaObjectFactory->method('newSchemaObject')
             ->with('Contact')
             ->willReturn($contactObject);
 
-        $contactBuilder = new Contact($builderFactory, $schemaObjectFactory);
+        $contactBuilder = new Contact($schemaObjectFactory);
         $contactBuilder([ 'url' => $url ]);
     }
 
@@ -111,14 +100,12 @@ class ContactTest extends PHPUnit_Framework_TestCase
         $contactObject->expects($this->never())
             ->method('setEmail');
 
-        $builderFactory = $this->createMock(BuilderFactory::class);
-
         $schemaObjectFactory = $this->createMock(SchemaObjectFactory::class);
         $schemaObjectFactory->method('newSchemaObject')
             ->with('Contact')
             ->willReturn($contactObject);
 
-        $contactBuilder = new Contact($builderFactory, $schemaObjectFactory);
+        $contactBuilder = new Contact($schemaObjectFactory);
         $contactBuilder([]);
     }
 
@@ -131,14 +118,12 @@ class ContactTest extends PHPUnit_Framework_TestCase
             ->method('setEmail')
             ->with($email);
 
-        $builderFactory = $this->createMock(BuilderFactory::class);
-
         $schemaObjectFactory = $this->createMock(SchemaObjectFactory::class);
         $schemaObjectFactory->method('newSchemaObject')
             ->with('Contact')
             ->willReturn($contactObject);
 
-        $contactBuilder = new Contact($builderFactory, $schemaObjectFactory);
+        $contactBuilder = new Contact($schemaObjectFactory);
         $contactBuilder([ 'email' => $email ]);
     }
 
@@ -146,14 +131,12 @@ class ContactTest extends PHPUnit_Framework_TestCase
     {
         $contactObject = $this->createMock(ContactObject::class);
 
-        $builderFactory = $this->createMock(BuilderFactory::class);
-
         $schemaObjectFactory = $this->createMock(SchemaObjectFactory::class);
         $schemaObjectFactory->method('newSchemaObject')
             ->with('Contact')
             ->willReturn($contactObject);
 
-        $contactBuilder = new Contact($builderFactory, $schemaObjectFactory);
+        $contactBuilder = new Contact($schemaObjectFactory);
         $result = $contactBuilder([]);
 
         $this->assertSame($result, $contactObject);
