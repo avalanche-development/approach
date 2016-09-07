@@ -20,7 +20,7 @@ class Info extends AbstractBuilder implements BuilderInterface, LoggerAwareInter
     public function __invoke(array $data)
     {
         if (empty($data['title']) || empty($data['version'])) {
-            $this->logger('Could not build Info object - missing title or version');
+            $this->logger->warning('Could not build Info object - missing title or version');
             return;
         }
 
