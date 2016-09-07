@@ -32,6 +32,9 @@ class SchemaObjectFactoryTest extends PHPUnit_Framework_TestCase
 
     public function testResolvePathReturnsPath()
     {
+        $this->markTestIncomplete('Refactored out');
+        return;
+
         $className = 'TestClass';
         $path = __NAMESPACE__ . "\Schema\{$className}";
 
