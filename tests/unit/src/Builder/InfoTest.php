@@ -2,11 +2,14 @@
 
 namespace AvalancheDevelopment\Approach\Builder;
 
+use AvalancheDevelopment\Approach\Schema\Contact as ContactObject;
 use AvalancheDevelopment\Approach\Schema\Info as InfoObject;
+use AvalancheDevelopment\Approach\Schema\License as LicenseObject;
 use AvalancheDevelopment\Approach\SchemaObjectFactory;
 use PHPUnit_Framework_TestCase;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use ReflectionClass;
 
 class InfoTest extends PHPUnit_Framework_TestCase
 {
@@ -153,22 +156,96 @@ class InfoTest extends PHPUnit_Framework_TestCase
 
     public function testInvokeDoesNotSetContactIfEmpty()
     {
-        $this->markTestIncomplete('');
+        $infoObject = $this->createMock(InfoObject::class);
+        $infoObject->expects($this->never())
+            ->method('setContact');
+
+        $schemaObjectFactory = $this->createMock(SchemaObjectFactory::class);
+        $schemaObjectFactory->method('newSchemaObject')
+            ->with('Info')
+            ->willReturn($infoObject);
+
+        $infoBuilder = $this->getMockBuilder(Info::class)
+            ->setConstructorArgs([ $schemaObjectFactory ])
+            ->setMethods([ 'buildContact' ])
+            ->getMock();
+
+        $infoBuilder([
+            'title' => 'An Awesome Title',
+            'version' => '1.0.0',
+        ]);
     }
 
     public function testInvokeSetsContactIfNotEmpty()
     {
-        $this->markTestIncomplete('');
+        $contactObject = $this->createMock(ContactObject::class);
+
+        $infoObject = $this->createMock(InfoObject::class);
+        $infoObject->expects($this->once())
+            ->method('setContact')
+            ->with($contactObject);
+
+        $schemaObjectFactory = $this->createMock(SchemaObjectFactory::class);
+        $schemaObjectFactory->method('newSchemaObject')
+            ->with('Info')
+            ->willReturn($infoObject);
+
+        $infoBuilder = $this->getMockBuilder(Info::class)
+            ->setConstructorArgs([ $schemaObjectFactory ])
+            ->setMethods([ 'buildContact' ])
+            ->getMock();
+        $infoBuilder->method('buildContact')
+            ->willReturn($contactObject);
+
+        $infoBuilder([
+            'title' => 'An Awesome Title',
+            'version' => '1.0.0',
+        ]);
     }
 
     public function testInvokeDoesNotSetLicenseIfEmpty()
     {
-        $this->markTestIncomplete('');
+        $infoObject = $this->createMock(InfoObject::class);
+        $infoObject->expects($this->never())
+            ->method('setLicense');
+
+        $schemaObjectFactory = $this->createMock(SchemaObjectFactory::class);
+        $schemaObjectFactory->method('newSchemaObject')
+            ->with('Info')
+            ->willReturn($infoObject);
+
+        $infoBuilder = new Info($schemaObjectFactory);
+        $infoBuilder([
+            'title' => 'An Awesome Title',
+            'version' => '1.0.0',
+        ]);
     }
 
     public function testInvokeSetsLicenseIfNotEmpty()
     {
-        $this->markTestIncomplete('');
+        $licenseObject = $this->createMock(LicenseObject::class);
+
+        $infoObject = $this->createMock(InfoObject::class);
+        $infoObject->expects($this->once())
+            ->method('setLicense')
+            ->with($licenseObject);
+
+        $schemaObjectFactory = $this->createMock(SchemaObjectFactory::class);
+        $schemaObjectFactory->method('newSchemaObject')
+            ->with('Info')
+            ->willReturn($infoObject);
+
+        $infoBuilder = $this->getMockBuilder(Info::class)
+            ->setConstructorArgs([ $schemaObjectFactory ])
+            ->setMethods([ 'buildLicense' ])
+            ->getMock();
+        $infoBuilder->method('buildLicense')
+            ->willReturn($licenseObject);
+
+        $infoBuilder([
+            'title' => 'An Awesome Title',
+            'version' => '1.0.0',
+        ]);
     }
 
     public function testInvokeBailsIfVersionIsEmpty()
@@ -233,21 +310,81 @@ class InfoTest extends PHPUnit_Framework_TestCase
 
     public function testBuildContactReturnsNullIfEmpty()
     {
-        $this->markTestIncomplete('');
+        $reflectedInfoBuilder = new ReflectionClass(Info::class);
+        $reflectedBuildContact = $reflectedInfoBuilder->getMethod('buildContact');
+        $reflectedBuildContact->setAccessible(true);
+
+        $schemaObjectFactory = $this->createMock(SchemaObjectFactory::class);
+
+        $infoBuilder = new Info($schemaObjectFactory);
+        $result = $reflectedBuildContact->invokeArgs($infoBuilder, [[]]);
+
+        $this->assertNull($result);
     }
 
     public function testBuildContactReturnsContactIfNotEmpty()
     {
-        $this->markTestIncomplete('');
+        $data = [
+            'contact' => [
+                'name' => 'Jack Black',
+            ],
+        ];
+
+        $reflectedInfoBuilder = new ReflectionClass(Info::class);
+        $reflectedBuildContact = $reflectedInfoBuilder->getMethod('buildContact');
+        $reflectedBuildContact->setAccessible(true);
+
+        $contactObject = $this->createMock(ContactObject::class);
+
+        $schemaObjectFactory = $this->createMock(SchemaObjectFactory::class);
+        $schemaObjectFactory->expects($this->once())
+            ->method('newSchemaObject')
+            ->with('Contact', $data['contact'])
+            ->willReturn($contactObject);
+
+        $infoBuilder = new Info($schemaObjectFactory);
+        $result = $reflectedBuildContact->invokeArgs($infoBuilder, [ $data ]);
+
+        $this->assertSame($contactObject, $result);
     }
 
     public function testBuildLicenseReturnsNullIfEmpty()
     {
-        $this->markTestIncomplete('');
+        $reflectedInfoBuilder = new ReflectionClass(Info::class);
+        $reflectedBuildLicense = $reflectedInfoBuilder->getMethod('buildLicense');
+        $reflectedBuildLicense->setAccessible(true);
+
+        $schemaObjectFactory = $this->createMock(SchemaObjectFactory::class);
+
+        $infoBuilder = new Info($schemaObjectFactory);
+        $result = $reflectedBuildLicense->invokeArgs($infoBuilder, [[]]);
+
+        $this->assertNull($result);
     }
 
     public function testBuildLicenseReturnsLicenseIfNotEmpty()
     {
-        $this->markTestIncomplete('');
+        $data = [
+            'license' => [
+                'name' => 'Apache 2.0',
+            ],
+        ];
+
+        $reflectedInfoBuilder = new ReflectionClass(Info::class);
+        $reflectedBuildLicense = $reflectedInfoBuilder->getMethod('buildLicense');
+        $reflectedBuildLicense->setAccessible(true);
+
+        $licenseObject = $this->createMock(LicenseObject::class);
+
+        $schemaObjectFactory = $this->createMock(SchemaObjectFactory::class);
+        $schemaObjectFactory->expects($this->once())
+            ->method('newSchemaObject')
+            ->with('License', $data['license'])
+            ->willReturn($licenseObject);
+
+        $infoBuilder = new Info($schemaObjectFactory);
+        $result = $reflectedBuildLicense->invokeArgs($infoBuilder, [ $data ]);
+
+        $this->assertSame($licenseObject, $result);
     }
 }
