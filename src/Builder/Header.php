@@ -17,14 +17,22 @@ class Header extends AbstractBuilder implements BuilderInterface, LoggerAwareInt
      */
     public function __invoke(array $data)
     {
+        // todo what if items is invalid?
+        if (
+            empty($data['type']) ||
+            $data['type'] === 'array' && empty($data['items'])
+        ) {
+            return;
+        }
+
         $header = $this->schemaObjectFactory->newSchemaObject('Header');
 
         if (!empty($data['description'])) {
             $header->setDescription($data['description']);
         }
-        if (!empty($data['type'])) {
-            $header->setType($data['type']);
-        }
+
+        $header->setType($data['type']);
+
         if (!empty($data['format'])) {
             $header->setFormat($data['format']);
         }
