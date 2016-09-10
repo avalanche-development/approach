@@ -20,8 +20,9 @@ class Header extends AbstractBuilder implements BuilderInterface, LoggerAwareInt
         // todo what if items is invalid?
         if (
             empty($data['type']) ||
-            $data['type'] === 'array' && empty($data['items'])
+            ($data['type'] === 'array' && empty($data['items']))
         ) {
+            $this->logger->warning('Could not build Header object - missing type');
             return;
         }
 
@@ -51,13 +52,13 @@ class Header extends AbstractBuilder implements BuilderInterface, LoggerAwareInt
         if (!empty($data['maximum'])) {
             $header->setMaximum($data['maximum']);
         }
-        if (!empty($data['exclusiveMaximum'])) {
+        if (isset($data['exclusiveMaximum'])) {
             $header->setExclusiveMaximum($data['exclusiveMaximum']);
         }
         if (!empty($data['minimum'])) {
             $header->setMinimum($data['minimum']);
         }
-        if (!empty($data['exclusiveMinimum'])) {
+        if (isset($data['exclusiveMinimum'])) {
             $header->setExclusiveMinimum($data['exclusiveMinimum']);
         }
         if (!empty($data['maxLength'])) {
