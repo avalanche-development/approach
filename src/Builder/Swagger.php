@@ -23,20 +23,20 @@ class Swagger extends AbstractBuilder implements BuilderInterface, LoggerAwareIn
      */
     public function __invoke(array $data)
     {
-        if (!empty($data['swagger'])) {
-            $this->logger->warning('Could not build Swagger doc - missing swagger field');
+        if (empty($data['swagger'])) {
+            $this->logger->warning('Could not build Swagger object - missing swagger field');
             return;
         }
 
         $info = $this->buildInfo($data);
         if ($info === null) {
-            $this->logger->warning('Could not build Swagger doc - invalid info attribute');
+            $this->logger->warning('Could not build Swagger object - invalid info attribute');
             return;
         }
 
         $paths = $this->buildPaths($data);
         if ($paths === null) {
-            $this->logger->warning('Could not build Swagger doc - invalid paths attribute');
+            $this->logger->warning('Could not build Swagger object - invalid paths attribute');
             return;
         }
 
